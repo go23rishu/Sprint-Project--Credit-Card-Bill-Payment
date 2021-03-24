@@ -1,0 +1,42 @@
+package com.cg.creditcardbillpaymen.services;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.cg.creditcardbillpaymen.entities.Customer;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	@Override
+	public Customer addCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer removeCustomer(long custId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer updateCustomer(long custId, Customer customer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer getCustomer(long custId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Customer> getAllCustomers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
