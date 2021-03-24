@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.creditcardbillpaymen.dao.AccountRepository;
 import com.cg.creditcardbillpaymen.entities.Account;
-import com.cg.creditcardbillpaymen.exceptions.CreditCardException;
+import com.cg.creditcardbillpaymen.exceptions.AccountException;
 import com.cg.creditcardbillpaymen.services.AccountService;
 
 import io.swagger.annotations.Api;
@@ -69,7 +69,7 @@ public class AccountController {
 		if(account!=null)
 			return new ResponseEntity<Account>(account,HttpStatus.OK); 
 		else
-			throw new CreditCardException("Movie ID doesn't exist.");
+			throw new AccountException("Movie ID doesn't exist.");
 	}
 	
 	/************************************************************************************
@@ -83,11 +83,7 @@ public class AccountController {
 
 	@PostMapping(value="/insertaccount", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public Account addAccount(@RequestBody Account account) {
-		    Account account1=accountService.getAccount(account.getAccountNumber());
-		    if(account1.equals(null))
-		    	return accountService.addAccount(account);
-		    else
-		    	throw new CreditCardException("Account already exist");
+		   return accountService.addAccount(account);
 	}
 	
 	/************************************************************************************
@@ -106,7 +102,7 @@ public class AccountController {
 		 if(account2 != null)
 			 accountService.removeAccount(accountNumber);
 		 else
-			 throw new CreditCardException("Movie ID doesn't exist in Database to delete");
+			 throw new AccountException("Account ID doesn't exist in Database to delete");
 	}
 	
 	/************************************************************************************

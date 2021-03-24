@@ -1,12 +1,14 @@
 package com.cg.creditcardbillpaymen.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.creditcardbillpaymen.dao.AccountRepository;
 import com.cg.creditcardbillpaymen.entities.Account;
+import com.cg.creditcardbillpaymen.exceptions.AccountException;
 
 /************************************************************************************
  *          @author          Rishu Raj
@@ -36,8 +38,13 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Account addAccount(Account account) {
 		// TODO Auto-generated method stub
+		Optional<Account> account1=accountRepositoryDao.findById(account.getAccountNumber());
+		if(account1.isEmpty()) {
 		accountRepositoryDao.saveAndFlush(account);
-		return accountRepositoryDao.getById(account.getAccountNumber());
+		return account;}
+		else
+			throw new AccountException("Already Exists");		
+		
 	}
 	
 	/************************************************************************************

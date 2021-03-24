@@ -3,12 +3,12 @@ package com.cg.creditcardbillpaymen.controllers;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.cg.creditcardbillpaymen.exceptions.CreditCardException;
+import com.cg.creditcardbillpaymen.exceptions.AccountException;
 /************************************************************************************
  *          @author          Rishu Raj
  *          Description      AccountControllerAdvice is a RestControllerAdvice class. 
  *          				This class help us to handle Exception with RestfulApi by a 
- *          				cross-cutting concern solution: CreditCardException. 
+ *          				cross-cutting concern solution: AccountException. 
  *          				                     					  
  *         Version             1.0
  *         Created Date    22-MAR-2021
@@ -28,7 +28,7 @@ public class AccountControllerAdvice {
 	 ************************************************************************************/
 
 	
-	@ExceptionHandler(CreditCardException.class)
+	@ExceptionHandler(AccountException.class)
 	public String creditCardException(Exception e)
 	{
 		return e.getMessage();
