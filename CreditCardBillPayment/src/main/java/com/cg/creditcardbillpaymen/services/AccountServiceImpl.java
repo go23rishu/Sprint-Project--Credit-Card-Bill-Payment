@@ -24,7 +24,7 @@ import com.cg.creditcardbillpaymen.exceptions.AccountException;
 public class AccountServiceImpl implements AccountService {
 
 	@Autowired
-	AccountRepository accountRepositoryDao;
+	private AccountRepository accountRepositoryDao;
 	
 
 	/************************************************************************************
@@ -36,14 +36,14 @@ public class AccountServiceImpl implements AccountService {
 	 
 	 ************************************************************************************/
 	@Override
-	public Account addAccount(Account account) {
+	public String addAccount(Account account) {
 		// TODO Auto-generated method stub
 		Optional<Account> account1=accountRepositoryDao.findById(account.getAccountNumber());
 		if(account1.isEmpty()) {
 		accountRepositoryDao.saveAndFlush(account);
-		return account;}
+		return "Account added successfully";}
 		else
-			throw new AccountException("Already Exists");		
+			throw new AccountException("Account ID already exists in database.");		
 		
 	}
 	
@@ -59,9 +59,16 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 
-	public void removeAccount(long id) {
+	public String removeAccount(long id) {
 		// TODO Auto-generated method stub
-		accountRepositoryDao.deleteById(id);
+		if(accountRepositoryDao.findById(id).isPresent()) {
+			accountRepositoryDao.deleteById(id);
+			return "Account deleted successfully";
+		}
+		else {
+			throw new AccountException("Account ID doesn't exist in Database to delete");
+		}
+//		accountRepositoryDao.deleteById(id);
 		
 	}
 	
@@ -100,7 +107,7 @@ public class AccountServiceImpl implements AccountService {
 			return accountRepositoryDao.findById(id).get();
 		}
 		else {
-			return null;
+			throw new AccountException("Account ID doesn't exist.");
 		}
 	}
 	/************************************************************************************

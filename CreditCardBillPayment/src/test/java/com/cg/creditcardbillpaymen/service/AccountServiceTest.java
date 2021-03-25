@@ -15,7 +15,7 @@ public class AccountServiceTest {
 	@Autowired
 	private AccountService accountService;
 	
-	Account account = new Account(10000L, "Rishu Raj", 4500D, "Savings");
+	Account account = new Account(1001L, "Rishu", 22200D, "Savings");
 	Account account2 = new Account(1002L, "Rohit", 4521D, "savings");
 	Account account3 = new Account(1004L, "Kalyan", 5500D, "current");
 	
@@ -23,28 +23,49 @@ public class AccountServiceTest {
 	@Test
 	void addTest()
 	{
-		accountService.addAccount(account);
-		assertEquals("Rishu Raj", accountService.getAccount(account.getAccountNumber()).getAccountName());
+		assertEquals("Rishu", accountService.getAccount(account.getAccountNumber()).getAccountName());
+	}
+	@Test
+	void addTest1()
+	{
 		assertEquals("savings", accountService.getAccount(account2.getAccountNumber()).getType());
+	}
+	@Test
+	void addTest2()
+	{
 		assertEquals(5500D, accountService.getAccount(account3.getAccountNumber()).getBalance());
 	}
 	
 	@Test
 	void getTest()
 	{
-		assertEquals(2500D, accountService.getAccount(1001L).getBalance());
+		assertEquals(22200D, accountService.getAccount(1001L).getBalance());
+	}
+	@Test
+	void getTest1()
+	{
 		assertEquals("savings", accountService.getAccount(1002L).getType());
+	}
+	@Test
+	void getTest2()
+	{
 		assertEquals(5500D, accountService.getAccount(1004L).getBalance());
 	}
 	@Test
 	void updateTest()
 	{
-		accountService.updateAccount(10000L, account);
-		assertEquals("Rishu Raj", accountService.getAccount(10000L).getAccountName());
+		assertEquals("Rishu", accountService.getAccount(1001L).getAccountName());
+	}
+	@Test
+	void updateTest2()
+	{
 		assertEquals(4521D, accountService.getAccount(1002L).getBalance());
+	}
+	@Test
+	void updateTest3()
+	{
 		assertEquals("current", accountService.getAccount(1004L).getType());
 	}
-	
 	
 
 }

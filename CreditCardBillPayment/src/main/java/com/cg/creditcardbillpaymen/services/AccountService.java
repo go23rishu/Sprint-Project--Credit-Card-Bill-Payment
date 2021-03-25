@@ -17,9 +17,9 @@ import com.cg.creditcardbillpaymen.entities.Account;
 
 
 public interface AccountService {
-	public Account addAccount(Account account);
+	public String addAccount(Account account);
 
-	public void removeAccount(long id);
+	public String removeAccount(long id);
 
 	public Account updateAccount(long id, Account account);
 

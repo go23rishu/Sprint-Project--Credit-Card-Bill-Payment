@@ -64,12 +64,9 @@ public class AccountController {
 	 ************************************************************************************/
 
 	@GetMapping("/{accountNumber}")
-	public ResponseEntity<Account> getAccount(@PathVariable long accountNumber) {
-		Account account=accountService.getAccount(accountNumber);
-		if(account!=null)
-			return new ResponseEntity<Account>(account,HttpStatus.OK); 
-		else
-			throw new AccountException("Movie ID doesn't exist.");
+	public Account getAccount(@PathVariable long accountNumber) {
+		return accountService.getAccount(accountNumber);
+		
 	}
 	
 	/************************************************************************************
@@ -82,7 +79,7 @@ public class AccountController {
 	 ************************************************************************************/
 
 	@PostMapping(value="/insertaccount", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Account addAccount(@RequestBody Account account) {
+	public String addAccount(@RequestBody Account account) {
 		   return accountService.addAccount(account);
 	}
 	
@@ -98,11 +95,12 @@ public class AccountController {
 
 	@DeleteMapping("/{accountNumber}")
 	public void removeAccount(@PathVariable long accountNumber){
-		 Account account2=accountService.getAccount(accountNumber);
-		 if(account2 != null)
-			 accountService.removeAccount(accountNumber);
-		 else
-			 throw new AccountException("Account ID doesn't exist in Database to delete");
+//		 Account account2=accountService.getAccount(accountNumber);
+//		 if(account2 != null)
+//			 accountService.removeAccount(accountNumber);
+//		 else
+//			 throw new AccountException("Account ID doesn't exist in Database to delete");
+		accountService.removeAccount(accountNumber);
 	}
 	
 	/************************************************************************************
